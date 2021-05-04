@@ -20,11 +20,17 @@ import androidx.fragment.app.FragmentActivity
 import com.example.android.hilt.R
 import com.example.android.hilt.ui.ButtonsFragment
 import com.example.android.hilt.ui.LogsFragment
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Navigator implementation.
  */
-class AppNavigatorImpl(private val activity: FragmentActivity) : AppNavigator {
+class AppNavigatorImpl @Inject constructor(
+    // The Activity binding is available without qualifiers:
+    // https://developer.android.com/training/dependency-injection/hilt-android#component-default
+    private val activity: FragmentActivity
+) : AppNavigator {
 
     override fun navigateTo(screen: Screens) {
         val fragment = when (screen) {
